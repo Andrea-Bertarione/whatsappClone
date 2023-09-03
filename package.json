@@ -1,0 +1,32 @@
+{
+  "name": "whatsappclone",
+  "version": "1.0.0",
+  "description": "A whatsapp clone that im making as a learning project, structured as a company would, trying to use all the best practices.",
+  "main": "backend/index.ts",
+  "scripts": {
+    "testBE": "node --loader ts-node/esm backend/index.ts debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "whatsappCloneProject"
+  },
+  "keywords": [
+    "nodeJs",
+    "angular",
+    "express",
+    "git"
+  ],
+  "author": "Bertarione Rava Rossa Andrea",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "type": "module"
+}
