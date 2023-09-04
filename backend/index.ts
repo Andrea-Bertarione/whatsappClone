@@ -1,4 +1,5 @@
 import express from "express";
+import { configDotenv } from "dotenv";
 import { routerSetup } from "./src/router.js";
 
 import { Application } from "express";
@@ -11,7 +12,10 @@ const main = async () => {
     if (debug) {
         console.time("Start up time");
     }
+
+    app.use(express.json());
     
+    configDotenv();
     await routerSetup(app);
     
     app.listen(port, () => {

@@ -1,6 +1,6 @@
 import path from "path";
 
-import { DefaultStaticRoute } from "../../interfaces/routes.interfaces.js";
+import { DefaultStaticRoute } from "../../interfaces/routes.interface.js";
 import { Request, Response } from "express";
 
 const filePath = path.resolve("./frontend/test.html");

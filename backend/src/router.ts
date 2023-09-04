@@ -1,7 +1,7 @@
 import { promises } from "fs";
 
 import { Application } from "express";
-import { DefaultRestRoute, DefaultStaticRoute } from "./interfaces/routes.interfaces.js";
+import { DefaultRestRoute, DefaultStaticRoute } from "./interfaces/routes.interface.js";
 
 const restRoute: String = "/rest";
 const staticRoute: String = "";

@@ -1,4 +1,4 @@
-import { DefaultRestRoute } from "../../../interfaces/routes.interfaces.js";
+import { DefaultRestRoute } from "../../../interfaces/routes.interface.js";
 import { Request, Response } from "express";
 
 const route: DefaultRestRoute = {
