@@ -30,12 +30,12 @@ export const registerMW: RequestHandler = async (req: Request, res: Response, ne
         return res.status(400).json(errorDefault);
     }
 
-    if (req.body.name.length > 50 || req.body.name.length <= 3) {
+    if (req.body.name.length > 50 || req.body.name.length < 3) {
         errorDefault.message = "Request body.name parameter must be between 3 and 50 characters";
         return res.status(400).json(errorDefault);
     }
 
-    if (req.body.surname.length > 50 || req.body.surname.length <= 3) {
+    if (req.body.surname.length > 50 || req.body.surname.length < 3) {
         errorDefault.message = "Request body.surname parameter must be between 3 and 50 characters";
         return res.status(400).json(errorDefault);
     }

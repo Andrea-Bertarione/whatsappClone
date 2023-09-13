@@ -202,7 +202,11 @@ const config: Config = {
   transformIgnorePatterns: [
     "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
   ],
-  moduleDirectories: ["<rootDir>", "node_modules"]
+  moduleDirectories: ["<rootDir>", "node_modules"],
+  moduleNameMapper: {
+    '^@middlewares/(.*)\\.js$': '<rootDir>/backend/src/middlewares/$1.ts',
+    '^@modules/(.*)\\.js$': '<rootDir>/backend/src/modules/$1.ts',
+  },
 };
 
 export default config;
