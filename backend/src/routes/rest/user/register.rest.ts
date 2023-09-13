@@ -1,13 +1,13 @@
-import db from "../../../modules/database.module.js";
-import { errorDefault } from "../../../modules/errors.module.js";
+import db from "@modules/database.module.js";
+import { errorDefault } from "@modules/errors.module.js";
 
-import { registerMW, loginMW } from "../../../middlewares/user.middleware.js";
+import { registerMW, loginMW } from "@middlewares/user.middleware.js";
 
-import { DefaultRestRoute } from "../../../interfaces/routes.interface.js";
-import { UserDocument } from "../../../interfaces/database.interface.js";
+import { DefaultRestRoute } from "@interfaces/routes.interface.js";
+import { UserDocument } from "@interfaces/database.interface.js";
 import { Request, Response } from "express";
 import { Filter, FindOptions, InsertOneResult } from "mongodb";
-import { ResponseSuccess } from "../../../interfaces/response.interface.js";
+import { ResponseSuccess } from "@interfaces/response.interface.js";
 
 const route: DefaultRestRoute = {
     endpoint: "register",

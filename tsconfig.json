@@ -1,5 +1,16 @@
 {
+  "include": ["backend/src/**/*.ts"],
   "compilerOptions": {
+    "baseUrl": "./",
+      "paths": {
+        "@interfaces/*": ["backend/src/interfaces/*"],
+        "@middlewares/*": ["backend/src/middlewares/*"],
+        "@modules/*": ["backend/src/modules/*"],
+        "@routes/*": ["backend/src/routes/*"],
+        "@tests/*": ["backend/src/tests/*"]
+      },
+      
+      
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
@@ -105,5 +116,6 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    
   }
 }

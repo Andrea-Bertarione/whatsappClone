@@ -1,5 +1,5 @@
 import { RequestHandler, Request, Response, NextFunction } from "express";
-import { errorDefault } from "../modules/errors.module.js";
+import { errorDefault } from "@modules/errors.module.js";
 
 export const dateIsValid = (date: string | number) => {
     const parsedDate = new Date(date);
