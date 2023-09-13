@@ -1,12 +1,14 @@
 import express from "express";
-import { configDotenv } from "dotenv";
+import dotenv from "dotenv";
 import { routerSetup } from "./src/router.js";
 
 import { Application } from "express";
 
-const port: Number = 8088;
-const debug: boolean = process.argv[2] == "debug";
+const port: Number = 8080;
+const debug: Boolean = process.argv[2] == "debug";
 const app: Application = express();
+
+dotenv.config({path: "./backend/.env"});
 
 const main = async () => {
     if (debug) {
@@ -14,8 +16,7 @@ const main = async () => {
     }
 
     app.use(express.json());
-    
-    configDotenv();
+
     await routerSetup(app);
     
     app.listen(port, () => {
