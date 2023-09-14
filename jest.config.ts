@@ -206,6 +206,7 @@ const config: Config = {
   moduleNameMapper: {
     '^@middlewares/(.*)\\.js$': '<rootDir>/backend/src/middlewares/$1.ts',
     '^@modules/(.*)\\.js$': '<rootDir>/backend/src/modules/$1.ts',
+    '^@noCategory/(.*)\\.js$': '<rootDir>/backend/src/$1.ts',
   },
 };
 

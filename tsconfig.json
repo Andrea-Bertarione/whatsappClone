@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
       "paths": {
+        "@noCategory/*": ["backend/src/*"],
         "@interfaces/*": ["backend/src/interfaces/*"],
         "@middlewares/*": ["backend/src/middlewares/*"],
         "@modules/*": ["backend/src/modules/*"],
