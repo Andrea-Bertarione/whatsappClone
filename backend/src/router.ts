@@ -12,7 +12,6 @@ export const routerSetup = async (app: Application) => {
         res.status(500).send("Something broke!");
     });
 
-
   try {
     // Load and mount REST routes
     const restDir: string[] = await promises.readdir("./backend/src/routes/rest");
@@ -65,13 +64,12 @@ export const validateRouteData = (routeData: any): routeData is DefaultRestRoute
   return (
     routeData != undefined &&
     typeof routeData === "object" &&
-    typeof routeData.method === "string" &&
+    (typeof routeData.method === "string" || typeof routeData.filePath === "string") &&
     typeof routeData.endpoint === "string" &&
     Array.isArray(routeData.middlewares) &&
     typeof routeData.handler === "function" &&
     Object.keys({
-        method: "GET",
-        endpoint: "/api/users",
+        endpoint: "",
         middlewares: [],
         handler: () => {},
         ...routeData
