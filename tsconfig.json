@@ -1,6 +1,11 @@
 {
-  "include": ["backend/src/**/*.ts"],
+  "include": [
+    "backend/index.ts",
+    "backend/src/**/*.ts"
+  ],
   "compilerOptions": {
+    "outDir": ".dist",
+    "rootDir": "./",
     "baseUrl": "./",
       "paths": {
         "@noCategory/*": ["backend/src/*"],
