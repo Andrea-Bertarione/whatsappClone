@@ -7,15 +7,20 @@
     "outDir": ".dist",
     "rootDir": "./",
     "baseUrl": "./",
-      "paths": {
-        "@noCategory/*": ["backend/src/*"],
-        "@interfaces/*": ["backend/src/interfaces/*"],
-        "@middlewares/*": ["backend/src/middlewares/*"],
-        "@modules/*": ["backend/src/modules/*"],
-        "@routes/*": ["backend/src/routes/*"],
-        "@tests/*": ["backend/src/tests/*"]
-      },
-      
+    "paths": {
+      "@noCategory/*": ["backend/src/*"],
+      "@interfaces/*": ["backend/src/interfaces/*"],
+      "@middlewares/*": ["backend/src/middlewares/*"],
+      "@modules/*": ["backend/src/modules/*"],
+      "@routes/*": ["backend/src/routes/*"],
+      "@tests/*": ["backend/src/tests/*"]
+    },
+    "plugins": [
+      {
+        "name": "tsc-alias",
+        "alwaysTryTypes": true
+      }
+    ],
       
     /* Visit https://aka.ms/tsconfig to read more about this file */
 

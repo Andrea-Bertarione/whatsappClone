@@ -16,7 +16,7 @@ try {
     process.exit(1);
 }
 
-const main = async () => {
+export const main = async () => {
     if (isDebug) {
         console.time("Start up time");
     }
