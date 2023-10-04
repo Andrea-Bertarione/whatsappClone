@@ -27,5 +27,5 @@ jobs:
         body: |
           ###Tests results###
           ```json
-            ${{ fromJson(toJSON(env.RESULT_TEST)) }}
+            ${{ toJSON(env.RESULT_TEST) }}
           ```
