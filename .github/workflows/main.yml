@@ -21,13 +21,11 @@ jobs:
         cat ./output-${{ github.run_id }}-${{ github.run_attempt }}.json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
 
-    -run: echo ${{ fromJson(env.RESULT_TEST) }}
-
     - name: Create commit comment
       uses: peter-evans/commit-comment@v1
       with:
         body: |
           ###Tests results###
           ```json
-            ${{ fromJson(env.RESULT_TEST) }}
+            ${{ fromJson(toJSON(env.RESULT_TEST)) }}
           ```
