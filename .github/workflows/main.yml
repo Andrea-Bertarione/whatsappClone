@@ -2,14 +2,13 @@ name: unit-testing backend
 on: push
 jobs:
   test:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v3
       with:
         node-version: "18"
-
-    permissions: write-all
 
     - name: Install Dependencies
       run: npm install
