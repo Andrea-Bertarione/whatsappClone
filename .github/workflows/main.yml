@@ -13,11 +13,11 @@ jobs:
       run: npm install
 
     - name: Run tests
-      run: npm run test -- --json --outputFile="./backend/src/tests/results/output-${{ github.run_id }}-${{ github.run_attempt }}.json"
+      run: npm run test -- --json --outputFile="./output-${{ github.run_id }}-${{ github.run_attempt }}.json"
 
     - run: |
         echo 'RESULT_TEST<<EOF' >> $GITHUB_ENV
-        cat ${{ github.workspace }}/backend/src/tests/results/output-${{ github.run_id }}-${{ github.run_attempt }}.json >> $GITHUB_ENV
+        cat ./output-${{ github.run_id }}-${{ github.run_attempt }}.json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
 
     - name: Create commit comment
