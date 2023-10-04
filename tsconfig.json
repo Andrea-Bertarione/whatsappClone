@@ -13,7 +13,8 @@
       "@middlewares/*": ["backend/src/middlewares/*"],
       "@modules/*": ["backend/src/modules/*"],
       "@routes/*": ["backend/src/routes/*"],
-      "@tests/*": ["backend/src/tests/*"]
+      "@tests/*": ["backend/src/tests/*"],
+      "@configs/*": ["backend/src/configs/*"]
     },
     "plugins": [
       {

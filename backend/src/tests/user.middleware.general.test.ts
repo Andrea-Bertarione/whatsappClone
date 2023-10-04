@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { dateIsValid, registerMW, loginMW } from "@middlewares/user.middleware.js";
+import { dateIsValid, registerMW, loginMW, getUserMW } from "@middlewares/user.middleware.js";
 import { errorDefault } from "@modules/errors.module.js";
 
 describe("dateIsValid", () => {
@@ -196,6 +196,47 @@ describe("loginMW", () => {
     req.body.email = "test@example.com";
     req.body.password = "password123";
     loginMW(req, res, next);
+    expect(next).toHaveBeenCalled();
+  });
+});
+
+describe("getUserMW", () => {
+  let req: Request;
+  let res: Response;
+  let next: NextFunction;
+
+  beforeEach(() => {
+    req = {
+      params: {
+        userId: "userId",
+      }
+    } as unknown as Request;
+    res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn()
+    } as unknown as Response;
+    next = jest.fn();
+  });
+
+  it("should return 400 with error message if request params are empty", async () => {
+    req.params = {};
+    getUserMW(req, res, next);
+    const expectedError = { ...errorDefault, message: "Request params are empty" };
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith(expectedError);
+  });
+
+  it("should return 400 with error message if request params.userId parameter is missing or empty", async () => {
+    req.params.userId = "";
+    getUserMW(req, res, next);
+    const expectedError = { ...errorDefault, message: "Request params.userId parameter is missing or empty" };
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith(expectedError);
+  });
+
+  it("should call next if all validations pass", async () => {
+    req.params.userId = "userId";
+    getUserMW(req, res, next);
     expect(next).toHaveBeenCalled();
   });
 });

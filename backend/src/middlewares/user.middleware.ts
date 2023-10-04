@@ -76,3 +76,17 @@ export const loginMW: RequestHandler = async (req: Request, res: Response, next:
 
     next();
 }
+
+export const getUserMW = async (req: Request, res: Response, next: NextFunction) => {
+    if (Object.keys(req.params).length === 0) {
+        errorDefault.message = "Request params are empty";
+        return res.status(400).json(errorDefault);
+    }
+
+    if (!req.params.userId) {
+        errorDefault.message = "Request params.userId parameter is missing or empty";
+        return res.status(400).json(errorDefault);
+    }
+
+    next();
+};

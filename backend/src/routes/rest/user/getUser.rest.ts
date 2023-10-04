@@ -1,32 +1,32 @@
 import db from "@modules/database.module.js";
 import { errorDefault } from "@modules/errors.module.js";
 
-import { loginMW } from "@middlewares/user.middleware.js";
+import { getUserMW } from "@middlewares/user.middleware.js";
 
-import { DefaultRestRoute } from "@interfaces/routes.interface.js";
-import { ResponseSuccess } from "@interfaces/response.interface.js";
 import { UserDocument } from "@interfaces/database.interface.js";
+import { ResponseSuccess } from "@interfaces/response.interface.js";
+import { DefaultRestRoute } from "@interfaces/routes.interface.js";
 import { Request, Response } from "express";
-import { Filter, FindOptions } from "mongodb";
-
-//todo: implement login system
+import { Filter, FindOptions, ObjectId } from "mongodb";
 
 const route: DefaultRestRoute = {
-    endpoint: "login",
-    method: "post",
-    middlewares: [ loginMW ],
+    endpoint: ":userId",
+    method: "get",
+    middlewares: [ getUserMW ],
     handler: async (req: Request, res: Response) => {
-        const { email, password } = req.body;
+        const userId: ObjectId = new ObjectId(req.params.userId);
         const userCollection = db.collection<UserDocument>("users");
 
         const findUserQueryBody: Filter<UserDocument> = {
-            email: email,
-            password: password
+            _id: userId,
         };
 
         const findUserQueryFilter: FindOptions<UserDocument> = {
             projection: {
-                _id: 1
+                name: 1,
+                surname: 1,
+                email: 1,
+                passward: 1
             }
         }
 
@@ -41,7 +41,8 @@ const route: DefaultRestRoute = {
             const userDataResponse: ResponseSuccess = {
                 status: "success",
                 data: {
-                    message: "User logged in correctly"
+                    user: user,
+                    message: "User found successfully"
                 }
             };
 
