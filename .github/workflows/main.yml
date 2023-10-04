@@ -9,6 +9,8 @@ jobs:
       with:
         node-version: "18"
 
+    permissions: write-all
+
     - name: Install Dependencies
       run: npm install
 
@@ -24,5 +26,6 @@ jobs:
       uses: peter-evans/commit-comment@v1
       with:
         body: |
+        ```json
           ${{ fromJson(env.RESULT_TEST) }}
-        reactions: eyes
+        ```
