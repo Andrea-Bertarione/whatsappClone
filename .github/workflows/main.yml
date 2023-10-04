@@ -13,18 +13,8 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm run test --no-color 2>"./output-${{ github.run_id }}-${{ github.run_attempt }}.txt"
-    - run: |
-        echo 'RESULT_TEST<<EOF' >> $GITHUB_ENV
-        cat ./output-${{ github.run_id }}-${{ github.run_attempt }}.txt >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
-
-    - name: Create commit comment
-      uses: peter-evans/commit-comment@v1
+    - uses: mattallty/jest-github-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        body: |
-          # Tests results
-          ```
-            ${{ env.RESULT_TEST }}
-          ```
+        test-command: "npm run test"
