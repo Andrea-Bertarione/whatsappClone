@@ -25,7 +25,7 @@ jobs:
       run: npm install
 
     - name: Run tests
-      run: npm run jestBE --json --outputFile=/backend/src/tests/results/output-${{ github.run_id }}-${{ github.run_attempt }}.json
+      run: npm run testBE --json --outputFile=/backend/src/tests/results/output-${{ github.run_id }}-${{ github.run_attempt }}.json
 
     - run: |
         echo 'RESULT_TEST<<EOF' >> $GITHUB_ENV
