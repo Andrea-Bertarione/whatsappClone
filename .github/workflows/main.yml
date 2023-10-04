@@ -13,8 +13,6 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
-    - uses: mattallty/jest-github-action@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: ArtiomTr/jest-coverage-report-action@v2
       with:
-        test-command: "npm run test"
+        test-script: npm run test
