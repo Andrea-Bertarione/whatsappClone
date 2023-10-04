@@ -25,6 +25,6 @@ jobs:
       uses: peter-evans/commit-comment@v1
       with:
         body: |
-        ```json
-          ${{ fromJson(env.RESULT_TEST) }}
-        ```
+          ```json
+            ${{ fromJson(env.RESULT_TEST) }}
+          ```
