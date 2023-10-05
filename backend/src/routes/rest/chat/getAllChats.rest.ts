@@ -1,22 +1,19 @@
 import db from "@modules/database.module.js";
 import { errorDefault } from "@modules/errors.module.js";
 
-
-
-import { ChatDocument, MessageDocument } from "@interfaces/database.interface.js";
+import { ChatDocument } from "@interfaces/database.interface.js";
 import { ResponseSuccess } from "@interfaces/response.interface.js";
 import { DefaultRestRoute } from "@interfaces/routes.interface.js";
 import { Request, Response } from "express";
-import { Filter, FindOptions, ObjectId } from "mongodb";
+import { Filter, FindOptions, ObjectId, Sort } from "mongodb";
 
 const route: DefaultRestRoute = {
-    endpoint: "getAllChats",
-    method: "post",
+    endpoint: "getAllChats/:userId",
+    method: "get",
     middlewares: [  ],
     handler: async (req: Request, res: Response) => {
-        const userId: ObjectId = new ObjectId(req.body.userId);
+        const userId: ObjectId = new ObjectId(req.params.userId);
         const chatCollection = db.collection<ChatDocument>("chats");
-        const messageCollection = db.collection<MessageDocument>("messages");
 
         const findChatsQueryBody: Filter<ChatDocument> = {
             _id: userId,
@@ -31,6 +28,25 @@ const route: DefaultRestRoute = {
             }
         }
 
+        const sortChatsSettings: Sort = {
+            "messages.$.sent": -1
+        }
+
+        const chatResult = await chatCollection.find(findChatsQueryBody, findChatsQueryFilter).sort(sortChatsSettings).toArray();
+
+        if (!chatResult || chatResult.length === 0) {
+            errorDefault.message = "no chats found for this user";
+            return res.status(400).json(errorDefault);
+        }
+
+        const userDataResponse: ResponseSuccess = {
+            status: "success",
+            data: {
+                chatsList: chatResult
+            }
+        };
+
+        res.status(200).json(userDataResponse);
     }
 }
 
