@@ -35,7 +35,6 @@ const route: DefaultRestRoute = {
         if (!user) {
             errorDefault.message = "Request error: User not found";
             res.status(404).json(errorDefault);
-            return;
         }
         else {
             const userDataResponse: ResponseSuccess = {
@@ -46,7 +45,6 @@ const route: DefaultRestRoute = {
             };
 
             res.status(200).json(userDataResponse);
-            return;
         }
     }
 }
